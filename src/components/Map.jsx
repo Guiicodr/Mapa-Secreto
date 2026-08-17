@@ -74,9 +74,19 @@ export default function Map({places}){
   },[places])
 
   return (
-    <div className="relative">
-      <input ref={searchRef} placeholder="Buscar endereço ou lugar" className="absolute z-10 left-4 top-4 p-2 rounded shadow bg-white w-72" />
-      <div className="h-96 w-full rounded overflow-hidden shadow" ref={mapRef} />
+    <div className="relative w-full">
+      {/* Campo de Busca Adaptável */}
+      <input
+        ref={searchRef}
+        placeholder="Buscar endereço ou lugar"
+        className="absolute z-10 top-3 left-3 right-3 sm:left-4 sm:right-auto sm:w-80 p-2.5 rounded-lg shadow-md bg-white text-sm outline-none"
+      />
+
+      {/* Container do Mapa com Altura Dinâmica */}
+      <div
+        className="w-full h-[65vh] sm:h-[75vh] md:h-[80vh] min-h-[400px] rounded-lg overflow-hidden shadow-md"
+        ref={mapRef}
+      />
     </div>
   )
 }
