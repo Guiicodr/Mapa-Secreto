@@ -1,4 +1,4 @@
-# 📍 Mapa Urbano
+# 📍 Mapa Secreto
 
 A curated, interactive web application designed to help users discover hidden gems, secret spots, and unique locations across the city. The interface dynamically adjusts its thematic aesthetic based on user-selected profiles (e.g., Nightlife, Family, Kids).
 
