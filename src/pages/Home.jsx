@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/NavBar';
 import PlaceCard from '../components/PlaceCard';
 
 const LOCAIS = [
