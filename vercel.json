@@ -1,0 +1,3 @@
+{
+    "buildCommand": "sh -c 'chmod +x ./node_modules/.bin/* || true; npx vite build'"
+}
