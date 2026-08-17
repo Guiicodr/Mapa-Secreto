@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #32a852;
+  --color-brand-yellow: #cccc29;
+  --color-brand-purple: #2d1b87;
+  --color-paper: #efe7d3;
+  --color-paper-dark: #e4dabd;
+  --color-ink: #211d16;
+  --color-pin: #b23a2e;
+}
+
+html {
+  font-size: 18px;
+}
+
+/* Container de Fundo Simples */
+.bg-carousel-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Transição suave e discreta */
+.bg-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.bg-fade-out {
+  animation: fadeOut 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
