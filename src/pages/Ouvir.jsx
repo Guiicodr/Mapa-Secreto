@@ -6,8 +6,10 @@ const lugares = [
     { id: 2, nome: 'Casa de Francisca', bairro: 'Sé', categoria: 'Música brasileira', preco: '$$ · noite', descricao: 'Uma casa pequena para ouvir música brasileira de perto, com artistas que merecem ser descobertos.', coords: [-23.5505, -46.6343], endereco: 'Rua dos Prazeres, 334, Sé' },
     { id: 3, nome: 'Picles', bairro: 'Santa Cecília', categoria: 'Shows e DJs', preco: '$ · noite', descricao: 'Agenda independente, pista apertada e noites que acabam sempre um pouco mais tarde.', coords: [-23.5387, -46.6508], endereco: 'Rua Augusta, 2690, Consolação' },
     { id: 4, nome: 'Sesc Pompeia', bairro: 'Pompeia', categoria: 'Cultura', preco: '$ · programação', descricao: 'Shows, escutas e encontros em um dos espaços culturais mais vivos da cidade.', coords: [-23.5267, -46.6815], endereco: 'Rua Clélia, 93, Pompeia' },
+    { id: 5, nome: 'Bona', bairro: 'Santa Cecília', categoria: 'Música independente', preco: '$ · shows', descricao: 'Palco pequeno, bandas novas e noites que revelam sons antes de todo mundo.', coords: [-23.5382, -46.6507], endereco: 'Rua General Jardim, 121, Vila Buarque' },
+    { id: 6, nome: 'Audio', bairro: 'Barra Funda', categoria: 'Shows ao vivo', preco: '$$ · programação', descricao: 'Uma casa dedicada a shows que mistura artistas conhecidos e descobertas da cena.', coords: [-23.5278, -46.6725], endereco: 'Av. Francisco Matarazzo, 694, Barra Funda' },
 ];
 
 export default function Ouvir() {
-    return <TrailPage eyebrow="Trilha ouvir · São Paulo" title="A cidade tem" highlight="som." description="Palcos pequenos, vozes grandes e lugares onde a música chega antes da fama. Escolha um achado e dê play na noite." accent="bg-mapa-cyan" motif="♫" note="Escute onde a cidade pulsa." count="9 achados" places={lugares} />;
+    return <TrailPage eyebrow="Trilha ouvir · São Paulo" title="A cidade tem" highlight="som." description="Palcos pequenos, vozes grandes e lugares onde a música chega antes da fama. Escolha um achado e dê play na noite." accent="bg-mapa-cyan" motif="♫" note="Escute onde a cidade pulsa." count="6 achados" places={lugares} />;
 }

@@ -14,8 +14,19 @@ function getPageFromHash() {
   return validHashes.has(hash) ? hash || 'home' : 'home';
 }
 
+function getInitialPage() {
+  const initialPage = getPageFromHash();
+
+  if (scrollTargets[initialPage]) {
+    window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    return 'home';
+  }
+
+  return initialPage;
+}
+
 function App() {
-  const [page, setPage] = React.useState(getPageFromHash);
+  const [page, setPage] = React.useState(getInitialPage);
 
   React.useEffect(() => {
     const handleHashChange = () => setPage(getPageFromHash());
@@ -31,11 +42,9 @@ function App() {
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      if (targetId === 'quem-somos') {
-        window.setTimeout(() => window.scrollBy({ top: 64, behavior: 'smooth' }), 250);
-      }
+      const extraOffset = targetId === 'quem-somos' ? 64 : 0;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY + extraOffset;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     });
   }, [page]);
 

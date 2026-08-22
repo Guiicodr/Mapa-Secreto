@@ -13,10 +13,10 @@ function handleMapClick() {
 
 export default function Home() {
   const trilhas = [
-    { id: 1, nome: 'Comer', achados: '12 achados', bg: 'bg-mapa-orange' },
-    { id: 2, nome: 'Beber', achados: '28 achados', bg: 'bg-mapa-blue' },
-    { id: 3, nome: 'Ver', achados: '34 achados', bg: 'bg-mapa-green' },
-    { id: 4, nome: 'Ouvir', achados: '9 achados', bg: 'bg-mapa-cyan' },
+    { id: 1, nome: 'Comer', achados: '6 achados', bg: 'bg-mapa-orange' },
+    { id: 2, nome: 'Beber', achados: '6 achados', bg: 'bg-mapa-blue' },
+    { id: 3, nome: 'Ver', achados: '6 achados', bg: 'bg-mapa-green' },
+    { id: 4, nome: 'Ouvir', achados: '6 achados', bg: 'bg-mapa-cyan' },
   ];
 
   return (
@@ -46,7 +46,7 @@ export default function Home() {
               Abrir o mapa
             </button>
             <span className="text-sm font-black text-gray-500 uppercase tracking-widest">
-              +830 achados · 4 cidades
+              +24 achados · 1 cidade
             </span>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="quem-somos" className="w-full min-h-[45vh] bg-white px-8 py-20 text-mapa-dark">
+      <section id="quem-somos" className="w-full min-h-[45vh] bg-mapa-cyan px-8 py-20 text-mapa-dark">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           <div className="lg:col-span-5 animate-in fade-in slide-in-from-left-10 duration-700">
             <span className="inline-block bg-mapa-yellow px-5 py-2 border-3 border-mapa-dark rounded-full font-black text-xs uppercase tracking-widest shadow-[3px_3px_0px_0px_#121212]">
@@ -117,14 +117,14 @@ export default function Home() {
             <div className="border-l-4 border-mapa-orange pl-6 space-y-4">
               <h3 className="text-2xl font-black">Por que existe?</h3>
               <p className="text-gray-700 font-bold text-lg leading-relaxed">
-                Porque os lugares mais especiais raramente aparecem primeiro numa busca. Eles chegam por indicação, numa conversa, e merecem ser encontrados sem pressa.
+                Criado como um projeto prático no programa Jovem Aprendiz da ESPRO, o mapa nasce para valorizar os pequenos comércios e cantos esquecidos da cidade. Acreditamos que os lugares mais especiais não aparecem nos primeiros resultados das grandes buscas, mas sim na indicação de quem vive o dia a dia do bairro.
               </p>
             </div>
 
             <div className="border-l-4 border-mapa-blue pl-6 space-y-4">
               <h3 className="text-2xl font-black">Quem faz o mapa?</h3>
               <p className="text-gray-700 font-bold text-lg leading-relaxed">
-                Gente que mora, circula e presta atenção. Nossa curadoria reúne histórias locais para aproximar você de uma cidade mais autêntica, diversa e viva.
+                Gente que mora, circula e presta atenção. Uma equipe de jovens aprendizes dividida entre gestão, pesquisa, design e tecnologia. Unimos nossas diferentes áreas e visões para construir uma plataforma colaborativa, sem fins lucrativos, focada em aproximar as pessoas de uma cidade mais autêntica e acessível.
               </p>
             </div>
           </div>
@@ -148,19 +148,19 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 border-y-4 border-mapa-dark py-8 animate-in fade-in duration-700 delay-200 fill-mode-forwards">
             <div>
               <p className="text-xs font-black uppercase tracking-widest">Curadoria</p>
-              <p className="mt-2 text-xl font-black">Moradores atentos</p>
+              <p className="mt-2 text-xl font-black">Seleção e Design de Experiência</p>
             </div>
             <div>
               <p className="text-xs font-black uppercase tracking-widest">Pesquisa</p>
-              <p className="mt-2 text-xl font-black">Histórias de bairro</p>
+              <p className="mt-2 text-xl font-black">Mídia & Conteúdo</p>
             </div>
             <div>
               <p className="text-xs font-black uppercase tracking-widest">Construção</p>
-              <p className="mt-2 text-xl font-black">Feito em conjunto</p>
+              <p className="mt-2 text-xl font-black">Planejamento e Gestão do Projeto</p>
             </div>
             <div>
               <p className="text-xs font-black uppercase tracking-widest">Tecnologia</p>
-              <p className="mt-2 text-xl font-black">Código aberto à cidade</p>
+              <p className="mt-2 text-xl font-black">Desenvolvimento e Programação</p>
             </div>
           </div>
 

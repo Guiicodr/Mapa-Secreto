@@ -9,7 +9,10 @@ export default function NavBar() {
 
         if (window.location.hash === '#quem-somos') {
             const aboutSection = document.getElementById('quem-somos');
-            aboutSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (aboutSection) {
+                const targetPosition = aboutSection.getBoundingClientRect().top + window.scrollY + 64;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
             return;
         }
 

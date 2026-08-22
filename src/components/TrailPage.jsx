@@ -3,11 +3,41 @@ import NavBar from './NavBar';
 import Map from './Map';
 import PlaceCard from './PlaceCard';
 import Atmosphere from './Atmosphere';
+import { submitSuggestion } from '../services/suggestions';
 
 export default function TrailPage({ eyebrow, title, highlight, description, accent, places, motif, note, count }) {
     const [selectedPlace, setSelectedPlace] = React.useState(places[0]);
+    const [suggestionSent, setSuggestionSent] = React.useState(false);
+    const [suggestionError, setSuggestionError] = React.useState('');
+    const [submittingSuggestion, setSubmittingSuggestion] = React.useState(false);
     const accentText = { 'bg-mapa-orange': 'text-mapa-orange', 'bg-mapa-blue': 'text-mapa-blue', 'bg-mapa-green': 'text-mapa-green', 'bg-mapa-cyan': 'text-mapa-cyan' }[accent];
     const accentBorder = { 'bg-mapa-orange': 'border-mapa-orange', 'bg-mapa-blue': 'border-mapa-blue', 'bg-mapa-green': 'border-mapa-green', 'bg-mapa-cyan': 'border-mapa-cyan' }[accent];
+    const suggestionText = { 'bg-mapa-orange': 'text-white', 'bg-mapa-blue': 'text-white', 'bg-mapa-green': 'text-mapa-dark', 'bg-mapa-cyan': 'text-mapa-dark' }[accent];
+
+    const scrollToSuggestion = () => {
+        document.getElementById('sugerir-lugar')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    const handleSuggestionSubmit = async (event) => {
+        event.preventDefault();
+        setSuggestionError('');
+        setSubmittingSuggestion(true);
+        const formData = new FormData(event.currentTarget);
+
+        try {
+            await submitSuggestion({
+                nome: formData.get('nome'),
+                bairro: formData.get('bairro'),
+                descricao: formData.get('descricao'),
+                trilha: eyebrow,
+            });
+            setSuggestionSent(true);
+        } catch {
+            setSuggestionError('Não foi possível enviar agora. Tente novamente em instantes.');
+        } finally {
+            setSubmittingSuggestion(false);
+        }
+    };
 
     return (
         <div className="home-shell min-h-screen bg-mapa-bg text-mapa-dark font-sans antialiased overflow-x-hidden relative">
@@ -42,6 +72,13 @@ export default function TrailPage({ eyebrow, title, highlight, description, acce
                                     <PlaceCard {...place} onSelect={() => setSelectedPlace(place)} selecionado={selectedPlace.id === place.id} />
                                 </div>
                             ))}
+                            <button type="button" onClick={scrollToSuggestion} className="min-h-64 bg-mapa-cyan text-mapa-dark border-4 border-mapa-dark rounded-3xl p-6 text-left shadow-[5px_5px_0px_0px_#121212] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#121212] transition-all cursor-pointer flex flex-col justify-between animate-in fade-in slide-in-from-bottom-6 duration-700">
+                                <span className="text-5xl font-black leading-none" aria-hidden="true">+</span>
+                                <span>
+                                    <span className="block text-2xl font-black leading-tight">Conhece um lugar que precisa estar aqui?</span>
+                                    <span className="block mt-3 text-xs font-black uppercase tracking-widest">Indique um achado</span>
+                                </span>
+                            </button>
                         </div>
                     </div>
                     <aside className="lg:col-span-5 lg:sticky lg:top-6 space-y-5">
@@ -54,6 +91,42 @@ export default function TrailPage({ eyebrow, title, highlight, description, acce
                     </aside>
                 </section>
             </main>
+            <section id="sugerir-lugar" className={`w-full ${accent} border-t-4 border-mapa-dark px-8 py-24 ${suggestionText}`}>
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+                    <div className="lg:col-span-5 animate-in fade-in slide-in-from-left-10 duration-700">
+                        <p className="font-black text-sm uppercase tracking-[0.2em]">A cidade é feita de indicações</p>
+                        <h2 className="mt-5 text-5xl lg:text-6xl font-black leading-[0.92] tracking-tight">Seu lugar secreto pode virar o próximo achado.</h2>
+                        <p className="mt-6 max-w-lg text-lg font-bold leading-relaxed">Conte para a gente sobre um endereço especial. Nossa curadoria vai conhecer a história e avaliar a indicação.</p>
+                    </div>
+
+                    <form onSubmit={handleSuggestionSubmit} className="lg:col-span-7 bg-white text-mapa-dark border-4 border-mapa-dark rounded-3xl p-6 md:p-8 shadow-[8px_8px_0px_0px_#121212] animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 fill-mode-forwards">
+                        {suggestionSent ? (
+                            <div className="min-h-64 flex flex-col justify-center gap-4">
+                                <p className="text-4xl font-black">Indicação recebida.</p>
+                                <p className="text-lg font-bold leading-relaxed">Obrigado por ajudar a cidade a continuar revelando seus melhores cantos.</p>
+                                <button type="button" onClick={() => setSuggestionSent(false)} className="self-start bg-mapa-blue text-white px-5 py-3 rounded-xl border-2 border-mapa-dark font-black text-xs uppercase tracking-wider hover:bg-mapa-dark transition-colors">Indicar outro lugar</button>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <label className="space-y-2 font-black text-sm">
+                                    <span className="block">Nome do lugar</span>
+                                    <input required name="nome" type="text" placeholder="Ex.: Bar do Zé" className="w-full bg-white text-mapa-dark placeholder:text-gray-500 border-3 border-mapa-dark rounded-xl px-4 py-3 font-bold outline-none focus:ring-4 focus:ring-mapa-cyan" />
+                                </label>
+                                <label className="space-y-2 font-black text-sm">
+                                    <span className="block">Bairro ou região</span>
+                                    <input required name="bairro" type="text" placeholder="Ex.: Centro" className="w-full bg-white text-mapa-dark placeholder:text-gray-500 border-3 border-mapa-dark rounded-xl px-4 py-3 font-bold outline-none focus:ring-4 focus:ring-mapa-cyan" />
+                                </label>
+                                <label className="md:col-span-2 space-y-2 font-black text-sm">
+                                    <span className="block">Por que vale a visita?</span>
+                                    <textarea required name="descricao" rows="4" placeholder="Conte um pouco sobre esse achado..." className="w-full bg-white text-mapa-dark placeholder:text-gray-500 resize-y border-3 border-mapa-dark rounded-xl px-4 py-3 font-bold outline-none focus:ring-4 focus:ring-mapa-cyan" />
+                                </label>
+                                {suggestionError && <p role="alert" className="md:col-span-2 text-sm font-bold text-mapa-orange">{suggestionError}</p>}
+                                <button type="submit" disabled={submittingSuggestion} className="md:col-span-2 justify-self-start bg-mapa-orange text-white px-6 py-3.5 rounded-xl border-3 border-mapa-dark shadow-[4px_4px_0px_0px_#121212] hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_#121212] transition-all font-black uppercase tracking-wider disabled:cursor-wait disabled:opacity-60">{submittingSuggestion ? 'Enviando...' : 'Enviar indicação'}</button>
+                            </div>
+                        )}
+                    </form>
+                </div>
+            </section>
         </div>
     );
 }
