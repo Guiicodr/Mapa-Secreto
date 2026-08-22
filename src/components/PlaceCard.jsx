@@ -4,11 +4,11 @@ export default function PlaceCard({ nome, bairro, categoria, descricao, preco, o
   return (
     <article className={`bg-white border-3 border-mapa-dark rounded-3xl p-6 shadow-[5px_5px_0px_0px_#121212] hover:shadow-[8px_8px_0px_0px_#121212] hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between ${selecionado ? 'ring-4 ring-mapa-yellow' : ''}`}>
       <div>
-        <div className="flex justify-between items-center mb-4 gap-2">
-          <span className="bg-mapa-green text-mapa-dark font-extrabold text-[11px] px-3 py-1 rounded-full border-2 border-mapa-dark uppercase tracking-wide">
+        <div className="flex flex-wrap justify-between items-start mb-4 gap-2">
+          <span className="max-w-full bg-mapa-green text-mapa-dark font-extrabold text-[11px] px-3 py-1 rounded-full border-2 border-mapa-dark uppercase tracking-wide break-words">
             📍 {bairro}
           </span>
-          <span className="bg-mapa-cyan text-mapa-dark font-extrabold text-[10px] px-3 py-1 rounded-full border-2 border-mapa-dark uppercase tracking-wider">
+          <span className="max-w-full bg-mapa-cyan text-mapa-dark font-extrabold text-[10px] px-3 py-1 rounded-full border-2 border-mapa-dark uppercase tracking-wider break-words">
             {categoria}
           </span>
         </div>

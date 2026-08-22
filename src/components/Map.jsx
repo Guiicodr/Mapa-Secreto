@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CircleMarker, MapContainer, Popup, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -52,9 +52,20 @@ function SearchLocation({ query, onQueryChange }) {
     )
 }
 
-export default function Map({ places = [] }) {
+function RecenterMap({ place }) {
+    const map = useMap()
+
+    useEffect(() => {
+        if (place) map.flyTo(place.coords, 14)
+    }, [map, place])
+
+    return null
+}
+
+export default function Map({ places = [], selectedPlace }) {
     const [query, setQuery] = useState('')
-    const center = places.length ? [places[0].coords[0], places[0].coords[1]] : [-23.55, -46.63]
+    const visiblePlaces = selectedPlace ? [selectedPlace] : places
+    const center = visiblePlaces.length ? [visiblePlaces[0].coords[0], visiblePlaces[0].coords[1]] : [-23.55, -46.63]
 
     return (
         <div className="relative w-full">
@@ -64,7 +75,8 @@ export default function Map({ places = [] }) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <SearchLocation query={query} onQueryChange={setQuery} />
-                {places.map((place) => (
+                <RecenterMap place={selectedPlace} />
+                {visiblePlaces.map((place) => (
                     <CircleMarker
                         key={place.id || place.nome || place.name}
                         center={place.coords}
