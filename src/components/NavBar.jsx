@@ -13,7 +13,8 @@ export default function NavBar() {
             return;
         }
 
-        window.location.hash = 'quem-somos';
+        window.history.pushState(null, '', '#quem-somos');
+        window.dispatchEvent(new Event('hashchange'));
     };
 
     const handleMapClick = () => {
