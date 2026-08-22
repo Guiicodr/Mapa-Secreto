@@ -1,57 +1,147 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 @theme {
-  --color-brand-green: #32a852;
-  --color-brand-yellow: #cccc29;
-  --color-brand-purple: #2d1b87;
-  --color-paper: #efe7d3;
-  --color-paper-dark: #e4dabd;
-  --color-ink: #211d16;
-  --color-pin: #b23a2e;
+  --color-mapa-orange: #F6511D;
+  --color-mapa-yellow: #FEC001;
+  --color-mapa-cyan: #6ED1EA;
+  --color-mapa-blue: #1C5CB0;
+  --color-mapa-green: #8AC926;
+  --color-mapa-dark: #121212;
+  --color-mapa-dark-green: #0d3b25;
+  --color-mapa-bg: #FAF8F5;
 }
 
-html {
-  font-size: 18px;
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+  }
 }
 
-/* Container de Fundo Simples */
-.bg-carousel-container {
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.font-logo {
+  font-family: 'Grandstander', cursive;
+}
+
+.home-shell {
+  isolation: isolate;
+  background-image:
+    linear-gradient(rgba(18, 18, 18, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 12% 18%, rgba(254, 192, 1, 0.2), transparent 20rem),
+    radial-gradient(circle at 88% 36%, rgba(110, 209, 234, 0.2), transparent 23rem),
+    var(--color-mapa-bg);
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+}
+
+.home-atmosphere {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
-/* Transição suave e discreta */
-.bg-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+.home-orbit {
+  position: absolute;
+  width: 28rem;
+  aspect-ratio: 1;
+  border: 2px solid rgba(18, 18, 18, 0.12);
+  border-radius: 50%;
 }
 
-.bg-fade-out {
-  animation: fadeOut 0.4s ease-in forwards;
+.home-orbit::after {
+  content: '';
+  position: absolute;
+  inset: 2rem;
+  border: 2px dashed rgba(18, 18, 18, 0.12);
+  border-radius: 50%;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+.home-orbit-orange {
+  top: 5rem;
+  right: -11rem;
+  box-shadow: inset 0 0 0 1.5rem rgba(246, 81, 29, 0.08);
+}
+
+.home-orbit-cyan {
+  top: 31rem;
+  left: -17rem;
+  width: 34rem;
+  box-shadow: inset 0 0 0 1.5rem rgba(110, 209, 234, 0.1);
+}
+
+.home-route {
+  position: absolute;
+  width: 18rem;
+  height: 8rem;
+  border-top: 3px dashed rgba(13, 59, 37, 0.22);
+  border-radius: 50%;
+  transform: rotate(24deg);
+}
+
+.home-route-one {
+  top: 15rem;
+  left: 41%;
+}
+
+.home-route-two {
+  top: 42rem;
+  right: 9%;
+  transform: rotate(-32deg);
+}
+
+.home-pin {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--color-mapa-dark);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 3px 3px 0 var(--color-mapa-dark);
+}
+
+.home-pin-one {
+  top: 19rem;
+  left: 58%;
+  background: var(--color-mapa-orange);
+}
+
+.home-pin-two {
+  top: 47rem;
+  right: 16%;
+  background: var(--color-mapa-green);
+}
+
+@media (max-width: 640px) {
+
+  .home-route-one,
+  .home-route-two,
+  .home-pin-two {
+    display: none;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-8px);
+  .home-orbit-orange {
+    right: -19rem;
   }
 }

@@ -1,229 +1,177 @@
-import React, { useState } from 'react';
-import Navbar from '../components/NavBar';
-import PlaceCard from '../components/PlaceCard';
+import React from 'react';
+import Atmosphere from '../components/Atmosphere';
+import NavBar from '../components/NavBar';
 
-const LOCAIS = [
-  {
-    id: 1,
-    title: 'Beco do Batman',
-    category: 'Arte urbana',
-    perfil: 'Noturno',
-    neighborhood: 'Vila Madalena',
-    description: 'Um labirinto de vielas cobertas de grafite com iluminação noturna e clima boêmio.',
-    mapQuery: 'Beco do Batman, São Paulo'
-  },
-  {
-    id: 2,
-    title: 'Bar dos Arcos',
-    category: 'Vida Noturna',
-    perfil: 'Noturno',
-    neighborhood: 'Centro',
-    description: 'Bar subterrâneo instalado sob os arcos do Theatro Municipal com balcões iluminados.',
-    mapQuery: 'Bar dos Arcos, São Paulo'
-  },
-  {
-    id: 3,
-    title: 'Parque Buenos Aires',
-    category: 'Natureza',
-    perfil: 'Infantil',
-    neighborhood: 'Higienópolis',
-    description: 'Parque seguro e plano, com parquinho infantil e muito espaço ao ar livre.',
-    mapQuery: 'Parque Buenos Aires, São Paulo'
-  },
-  {
-    id: 4,
-    title: 'Cemitério da Consolação',
-    category: 'História',
-    perfil: 'Família',
-    neighborhood: 'Consolação',
-    description: 'Passeio histórico guiado em família em meio a esculturas e túmulos de época.',
-    mapQuery: 'Cemitério da Consolação, São Paulo'
-  },
-  {
-    id: 5,
-    title: 'Mirante do SESC Avenida Paulista',
-    category: 'História',
-    perfil: 'Família',
-    neighborhood: 'Bela Vista',
-    description: 'Vista panorâmica do topo da avenida mais famosa da cidade com café e espaço cultural.',
-    mapQuery: 'SESC Avenida Paulista, São Paulo'
-  },
-  {
-    id: 6,
-    title: 'Cine Joia',
-    category: 'Vida Noturna',
-    perfil: 'Noturno',
-    neighborhood: 'Liberdade',
-    description: 'Antigo cinema oriental transformado em casa de shows com projeções mapeadas.',
-    mapQuery: 'Cine Joia, São Paulo'
-  },
-  {
-    id: 7,
-    title: 'Catavento Museu das Ciências',
-    category: 'Natureza',
-    perfil: 'Infantil',
-    neighborhood: 'Brás',
-    description: 'Museu interativo de ciências com experimentos, borboletário e atrações para todas as idades.',
-    mapQuery: 'Museu Catavento, São Paulo'
-  },
-  {
-    id: 8,
-    title: 'Praça Pôr do Sol',
-    category: 'Natureza',
-    perfil: 'Família',
-    neighborhood: 'Alto de Pinheiros',
-    description: 'Ponto de encontro clássico para relaxar no gramado e assistir ao fim de tarde.',
-    mapQuery: 'Praca Por do Sol, São Paulo'
+function handleMapClick() {
+  if (window.location.hash === '#mapa-cards') {
+    document.getElementById('funciona')?.scrollIntoView({ behavior: 'smooth' });
+    return;
   }
-];
 
-const CATEGORIAS = ['Todas', 'Arte urbana', 'Vida Noturna', 'História', 'Natureza'];
+  window.location.hash = 'mapa-cards';
+}
 
 export default function Home() {
-  const [busca, setBusca] = useState('');
-  const [perfilAtivo, setPerfilAtivo] = useState('Todos');
-  const [categoriaAtiva, setCategoriaAtiva] = useState('Todas');
-  const [bgAnimation, setBgAnimation] = useState('bg-fade-in');
-
-  const trocarPerfil = (novoPerfil) => {
-    if (novoPerfil === perfilAtivo) return;
-
-    setBgAnimation('bg-fade-out');
-
-    setTimeout(() => {
-      setPerfilAtivo(novoPerfil);
-      setBgAnimation('bg-fade-in');
-    }, 200);
-  };
-
-  const locaisFiltrados = LOCAIS.filter(local => {
-    const batePerfil = perfilAtivo === 'Todos' || local.perfil === perfilAtivo;
-    const bateCategoria = categoriaAtiva === 'Todas' || local.category === categoriaAtiva;
-    const bateBusca = local.title.toLowerCase().includes(busca.toLowerCase()) ||
-      local.neighborhood.toLowerCase().includes(busca.toLowerCase());
-    return batePerfil && bateCategoria && bateBusca;
-  });
-
-  const getThemeBackground = () => {
-    switch (perfilAtivo) {
-      case 'Noturno':
-        return {
-          bgColor: 'bg-[#090b10]',
-          gradient: 'bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(147,51,234,0.25),transparent)]',
-          heroText: 'text-purple-400',
-          title: 'A cidade após o pôr do sol'
-        };
-      case 'Infantil':
-        return {
-          bgColor: 'bg-[#0f1d17]',
-          gradient: 'bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(16,185,129,0.25),transparent)]',
-          heroText: 'text-emerald-400',
-          title: 'Aventuras para os pequenos'
-        };
-      case 'Família':
-        return {
-          bgColor: 'bg-[#1a1510]',
-          gradient: 'bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(245,158,11,0.25),transparent)]',
-          heroText: 'text-amber-300',
-          title: 'Roteiros calmos & culturais'
-        };
-      default:
-        return {
-          bgColor: 'bg-[#14171c]',
-          gradient: 'bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(204,204,41,0.15),transparent)]',
-          heroText: 'text-[#cccc29]',
-          title: 'Lugares que o guia esqueceu'
-        };
-    }
-  };
-
-  const theme = getThemeBackground();
+  const trilhas = [
+    { id: 1, nome: 'Comer', achados: '12 achados', bg: 'bg-mapa-orange' },
+    { id: 2, nome: 'Beber', achados: '28 achados', bg: 'bg-mapa-blue' },
+    { id: 3, nome: 'Ver', achados: '34 achados', bg: 'bg-mapa-green' },
+    { id: 4, nome: 'Ouvir', achados: '9 achados', bg: 'bg-mapa-cyan' },
+  ];
 
   return (
-    <div className="min-h-screen text-[#ece7da] relative bg-[#14171c] overflow-hidden">
+    <div className="home-shell min-h-screen bg-mapa-bg text-mapa-dark font-sans antialiased overflow-x-hidden relative">
+      <Atmosphere />
+      <NavBar />
 
-      {/* FUNDO SIMPLES COM FADE */}
-      <div className={`bg-carousel-container ${theme.bgColor}`}>
-        <div className={`w-full h-full relative transition-all ${bgAnimation}`}>
-          <div className={`absolute inset-0 ${theme.gradient}`} />
-        </div>
-      </div>
+      <section id="mapa" className="max-w-7xl mx-auto px-8 pt-12 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-      {/* CONTEÚDO */}
-      <div className="relative z-10">
-        <Navbar perfilAtivo={perfilAtivo} setPerfilAtivo={trocarPerfil} />
+        <div className="lg:col-span-7 space-y-8 animate-in fade-in slide-in-from-left-12 duration-1000 fill-mode-forwards">
+          <span className="inline-block bg-mapa-green text-mapa-dark font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-full border-3 border-mapa-dark shadow-[3px_3px_0px_0px_#121212]">
+            FEITO POR QUEM MORA AQUI
+          </span>
 
-        <header className="relative min-h-[50vh] flex flex-col justify-center items-center text-center px-8 py-16">
-          <p className={`font-mono text-sm md:text-base uppercase tracking-[0.2em] ${theme.heroText} mb-6 font-medium transition-colors duration-300`}>
-            Perfil Selecionado: {perfilAtivo}
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black leading-[0.95] text-mapa-dark tracking-tight">
+            Os melhores <br />
+            lugares <br />
+            <span className="text-mapa-orange">não estão no Google.</span>
+          </h1>
+
+          <p className="text-gray-800 font-bold text-lg lg:text-xl max-w-xl leading-relaxed">
+            Um mapa colaborativo de becos, botecos, feiras e cantos que só aparecem quando alguém te conta. Sem patrocínio, sem fila de turista.
           </p>
 
-          <h1 className="font-serif italic font-semibold text-7xl md:text-9xl leading-none text-[#efe7d3] mb-6">
-            Mapa<br />
-            <span className={`not-italic font-light text-base md:text-2xl tracking-[0.3em] uppercase ${theme.heroText} font-mono block mt-5 transition-colors duration-300`}>
-              {theme.title}
+          <div className="flex flex-wrap items-center gap-6 pt-4">
+            <button type="button" onClick={handleMapClick} className="bg-mapa-blue hover:scale-105 active:scale-95 text-white font-black text-lg px-10 py-5 rounded-full border-4 border-mapa-dark shadow-[6px_6px_0px_0px_#121212] transition-all cursor-pointer">
+              Abrir o mapa
+            </button>
+            <span className="text-sm font-black text-gray-500 uppercase tracking-widest">
+              +830 achados · 4 cidades
             </span>
-          </h1>
-        </header>
+          </div>
+        </div>
 
-        <main className="max-w-7xl mx-auto px-8 py-12" id="pontos">
-          {/* BARRA SUPERIOR DE INFORMAÇÕES E BUSCA */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 mb-8 border-b border-white/10">
-            <div>
-              <h2 className="font-serif italic text-4xl md:text-5xl text-[#efe7d3]">
-                O arquivo
-              </h2>
-              <span className="font-mono text-sm text-gray-400 block mt-2">
-                {locaisFiltrados.length} locais encontrados ({perfilAtivo})
-              </span>
+        <div className="lg:col-span-5 flex justify-center lg:justify-end animate-in fade-in zoom-in-75 duration-1000 delay-300 fill-mode-forwards relative z-10">
+          <div className="animate-float bg-mapa-yellow border-4 border-mapa-dark rounded-[56px] p-8 md:p-10 w-full max-w-lg aspect-square flex items-center justify-center relative shadow-[12px_12px_0px_0px_#121212]">
+
+            <div className="border-4 border-mapa-dark rounded-[36px] w-full h-full overflow-hidden bg-white flex items-center justify-center p-4">
+              <img
+                src="/cidade.png"
+                alt="Mapa Secreto"
+                className="w-full h-full object-contain"
+              />
             </div>
 
-            <input
-              type="text"
-              placeholder="Buscar por nome ou bairro..."
-              value={busca}
-              onChange={(e) => setBusca(e.target.value)}
-              className="bg-[#1b1f26]/90 border border-white/20 rounded-md px-5 py-3 font-mono text-sm text-[#efe7d3] focus:outline-none focus:border-[#cccc29] w-full md:w-80 backdrop-blur-sm"
-            />
-          </div>
-
-          {/* FILTROS DE CATEGORIA */}
-          <div className="flex gap-3 flex-wrap mb-12">
-            {CATEGORIAS.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategoriaAtiva(cat)}
-                className={`font-mono text-xs md:text-sm uppercase px-4 py-2.5 rounded-full transition-all cursor-pointer ${categoriaAtiva === cat
-                    ? 'bg-white/20 text-white font-bold shadow-md border border-white/30 backdrop-blur-sm'
-                    : 'bg-[#1b1f26]/80 text-gray-300 border border-white/10 hover:border-white/30'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* GRID DE CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {locaisFiltrados.map((local) => (
-              <PlaceCard key={local.id} {...local} />
-            ))}
-
-            <div className="bg-[#1b1f26]/60 border-2 border-dashed border-white/20 rounded-sm p-8 flex flex-col justify-center items-center text-center hover:border-white/50 transition-colors min-h-[350px]">
-              <h3 className="font-serif text-2xl text-[#efe7d3] mb-2">Conhece um lugar secreto?</h3>
-              <p className="font-mono text-sm text-gray-400 mb-6">
-                Envie uma indicação para incluir no mapa.
-              </p>
-              <button
-                onClick={() => alert("Em breve: formulário de envio!")}
-                className="font-mono text-xs md:text-sm text-[#cccc29] border border-[#cccc29]/50 px-5 py-2.5 rounded hover:bg-[#cccc29]/10 transition-colors cursor-pointer font-semibold"
-              >
-                + Sugerir Novo Local
-              </button>
+            <div className="absolute -bottom-6 left-8 bg-white border-4 border-mapa-dark px-6 py-2.5 rounded-2xl text-sm lg:text-base font-black -rotate-2 shadow-[4px_4px_0px_0px_#121212] z-20">
+              "X marca o boteco."
             </div>
           </div>
-        </main>
+        </div>
+      </section>
+
+      <div className="w-full h-5 flex border-y-3 border-mapa-dark">
+        <div className="flex-1 bg-mapa-orange"></div>
+        <div className="flex-1 bg-mapa-yellow"></div>
+        <div className="flex-1 bg-mapa-cyan"></div>
+        <div className="flex-1 bg-mapa-blue"></div>
+        <div className="flex-1 bg-mapa-green"></div>
       </div>
+
+      <section id="funciona" className="w-full bg-mapa-dark-green text-white py-24 px-8">
+        <div className="max-w-7xl mx-auto space-y-16">
+          <h2 className="text-5xl lg:text-6xl font-black max-w-2xl leading-tight tracking-tight animate-in fade-in slide-in-from-bottom-8 duration-700">
+            Quatro trilhas, uma cidade inteira escondida.
+          </h2>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {trilhas.map((trilha, index) => (
+              <button
+                key={trilha.id}
+                type="button"
+                onClick={() => { window.location.hash = trilha.nome.toLowerCase(); }}
+                style={{ animationDelay: `${(index + 1) * 150}ms` }}
+                className={`${trilha.bg} text-mapa-dark border-4 border-mapa-dark rounded-3xl p-8 shadow-[6px_6px_0px_0px_#121212] hover:-translate-y-2 hover:scale-105 transition-all cursor-pointer flex flex-col justify-between h-48 animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-forwards`}
+              >
+                <h3 className="font-black text-4xl leading-none">{trilha.nome}</h3>
+                <span className="text-sm font-black uppercase tracking-wider opacity-90">
+                  {trilha.achados}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="quem-somos" className="w-full min-h-[45vh] bg-white px-8 py-20 text-mapa-dark">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          <div className="lg:col-span-5 animate-in fade-in slide-in-from-left-10 duration-700">
+            <span className="inline-block bg-mapa-yellow px-5 py-2 border-3 border-mapa-dark rounded-full font-black text-xs uppercase tracking-widest shadow-[3px_3px_0px_0px_#121212]">
+              Quem somos?
+            </span>
+            <h2 className="mt-7 text-5xl lg:text-6xl font-black leading-[0.95] tracking-tight">
+              A cidade fica melhor quando a gente compartilha.
+            </h2>
+          </div>
+
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-10 lg:pt-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 fill-mode-forwards">
+            <div className="border-l-4 border-mapa-orange pl-6 space-y-4">
+              <h3 className="text-2xl font-black">Por que existe?</h3>
+              <p className="text-gray-700 font-bold text-lg leading-relaxed">
+                Porque os lugares mais especiais raramente aparecem primeiro numa busca. Eles chegam por indicação, numa conversa, e merecem ser encontrados sem pressa.
+              </p>
+            </div>
+
+            <div className="border-l-4 border-mapa-blue pl-6 space-y-4">
+              <h3 className="text-2xl font-black">Quem faz o mapa?</h3>
+              <p className="text-gray-700 font-bold text-lg leading-relaxed">
+                Gente que mora, circula e presta atenção. Nossa curadoria reúne histórias locais para aproximar você de uma cidade mais autêntica, diversa e viva.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full min-h-[55vh] bg-mapa-yellow border-t-4 border-mapa-dark px-8 pt-20 pb-36 text-mapa-dark">
+        <div className="max-w-7xl mx-auto flex min-h-[40vh] flex-col justify-between gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end animate-in fade-in slide-in-from-bottom-8 duration-700">
+            <div className="lg:col-span-8">
+              <p className="font-black text-sm uppercase tracking-[0.2em]">Créditos do mapa</p>
+              <h2 className="mt-5 max-w-4xl text-5xl md:text-7xl font-black leading-[0.9] tracking-tight">
+                Feito com cuidado, conversa e vontade de mostrar a cidade por inteiro.
+              </h2>
+            </div>
+            <p className="lg:col-span-4 text-lg font-bold leading-relaxed lg:pb-2">
+              Cada achado nasce de uma indicação. Cada indicação ajuda a manter vivos os lugares que fazem uma cidade ser dela mesma.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 border-y-4 border-mapa-dark py-8 animate-in fade-in duration-700 delay-200 fill-mode-forwards">
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest">Curadoria</p>
+              <p className="mt-2 text-xl font-black">Moradores atentos</p>
+            </div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest">Pesquisa</p>
+              <p className="mt-2 text-xl font-black">Histórias de bairro</p>
+            </div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest">Construção</p>
+              <p className="mt-2 text-xl font-black">Feito em conjunto</p>
+            </div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest">Tecnologia</p>
+              <p className="mt-2 text-xl font-black">Código aberto à cidade</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+            <p className="font-logo text-4xl font-black">Mapa Secreto</p>
+            <p className="max-w-md text-sm font-black uppercase tracking-wider sm:text-right">
+              Um projeto independente para quem prefere descobrir do que passar direto.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
