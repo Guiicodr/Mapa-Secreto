@@ -190,5 +190,65 @@
     "descricao": "Shows, escutas e encontros em um dos espaços culturais mais vivos da cidade.",
     "coords": [-23.5267, -46.6815],
     "endereco": "Rua Clélia, 93, Pompeia"
+  },
+  {
+    "id": 17,
+    "categoria": "ouvir",
+    "nome": "Teatro Arthur Azevedo",
+    "bairro": "Mooca",
+    "cidade": "São Paulo",
+    "tipo": "Teatro e música",
+    "preco": "$$ · programação",
+    "descricao": "Uma casa de espetáculos com programação consistente e clima de bairro para quem curte teatro e música.",
+    "coords": [-23.5573, -46.5952],
+    "endereco": "Av. Paes de Barros, 955, Alto da Mooca"
+  },
+  {
+    "id": 18,
+    "categoria": "ver",
+    "nome": "Museu da Cidade de São Paulo / Solar da Marquesa de Santos",
+    "bairro": "Centro Histórico",
+    "cidade": "São Paulo",
+    "tipo": "Museu",
+    "preco": "$ · visita guiada",
+    "descricao": "Uma casa histórica com história, arquitetura e um olhar mais íntimo sobre a cidade de São Paulo.",
+    "coords": [-23.5488, -46.6356],
+    "endereco": "Rua Roberto Simonsen, 136, Centro Histórico de São Paulo"
+  },
+  {
+    "id": 19,
+    "categoria": "ver",
+    "nome": "Fo Guang Shan Templo Zu Lai",
+    "bairro": "Cotia",
+    "cidade": "São Paulo",
+    "tipo": "Templo e paisagem",
+    "preco": "grátis · visita",
+    "descricao": "Um espaço de paz, arquitetura inspirada no budismo e uma vista que convida à contemplação.",
+    "coords": [-23.6088, -46.9528],
+    "endereco": "Estrada Fernando Nobre, 1461, Parque Rincão, Cotia"
+  },
+  {
+    "id": 20,
+    "categoria": "ver",
+    "nome": "Cine Marquise",
+    "bairro": "Cerqueira César",
+    "cidade": "São Paulo",
+    "tipo": "Cinema clássico",
+    "preco": "$$ · sessão",
+    "descricao": "Um cinema histórico para rever clássicos e manter a cidade em movimento com a cultura de rua.",
+    "coords": [-23.5629, -46.6552],
+    "endereco": "Av. Paulista, 2073, Cerqueira César"
+  },
+  {
+    "id": 21,
+    "categoria": "comer",
+    "nome": "Taverna Medieval",
+    "bairro": "Vila Clementino",
+    "cidade": "São Paulo",
+    "tipo": "Ambiente temático",
+    "preco": "$$ · jantar",
+    "descricao": "Um ambiente medieval com clima de taberna, comida em clima de reencontro e muita fantasia para a noite.",
+    "coords": [-23.5944, -46.6349],
+    "endereco": "Rua Gandavo, 456, Vila Clementino"
   }
 ]

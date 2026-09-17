@@ -8,8 +8,9 @@ const lugares = [
     { id: 4, nome: 'Mocotó', bairro: 'Vila Medeiros', categoria: 'Sertaneja', preco: '$$ · almoço e jantar', descricao: 'Sabores do sertão em receitas generosas, daqueles lugares que valem a viagem até a zona norte.', coords: [-23.4802, -46.5883], endereco: 'Av. Nossa Senhora do Loreto, 1100, Vila Medeiros' },
     { id: 5, nome: 'Mercado de Pinheiros', bairro: 'Pinheiros', categoria: 'Mercado', preco: '$ · dia', descricao: 'Bancas, temperos e pequenos balcões para provar sabores diferentes no ritmo do bairro.', coords: [-23.5666, -46.6907], endereco: 'Rua Pedro Cristi, 89, Pinheiros' },
     { id: 6, nome: 'Pastel da Maria', bairro: 'Liberdade', categoria: 'Comida de rua', preco: '$ · qualquer hora', descricao: 'Pastéis crocantes e caldo de cana para uma parada rápida cheia de sabor.', coords: [-23.5585, -46.6348], endereco: 'Praça da Liberdade, Liberdade' },
+    { id: 7, nome: 'Taverna Medieval', bairro: 'Vila Clementino', categoria: 'Ambiente temático', preco: '$$ · jantar', descricao: 'Um ambiente medieval com clima de taberna, comida em clima de reencontro e muita fantasia para a noite.', coords: [-23.5944, -46.6349], endereco: 'Rua Gandavo, 456, Vila Clementino' },
 ];
 
 export default function Comer() {
-    return <TrailPage eyebrow="Trilha comer · São Paulo" title="Mesa boa," highlight="escondida." description="Lugares pequenos, cozinhas honestas e endereços que passam de boca em boca. Escolha um achado e trace seu próximo almoço." accent="bg-mapa-orange" motif="✦" note="Comida que vira história." count="6 achados" places={lugares} />;
+    return <TrailPage eyebrow="Trilha comer · São Paulo" title="Mesa boa," highlight="escondida." description="Lugares pequenos, cozinhas honestas e endereços que passam de boca em boca. Escolha um achado e trace seu próximo almoço." accent="bg-mapa-orange" motif="✦" note="Comida que vira história." count="7 achados" places={lugares} />;
 }

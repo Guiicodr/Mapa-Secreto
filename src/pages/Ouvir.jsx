@@ -8,8 +8,9 @@ const lugares = [
     { id: 4, nome: 'Sesc Pompeia', bairro: 'Pompeia', categoria: 'Cultura', preco: '$ · programação', descricao: 'Shows, escutas e encontros em um dos espaços culturais mais vivos da cidade.', coords: [-23.5267, -46.6815], endereco: 'Rua Clélia, 93, Pompeia' },
     { id: 5, nome: 'Bona', bairro: 'Santa Cecília', categoria: 'Música independente', preco: '$ · shows', descricao: 'Palco pequeno, bandas novas e noites que revelam sons antes de todo mundo.', coords: [-23.5382, -46.6507], endereco: 'Rua General Jardim, 121, Vila Buarque' },
     { id: 6, nome: 'Audio', bairro: 'Barra Funda', categoria: 'Shows ao vivo', preco: '$$ · programação', descricao: 'Uma casa dedicada a shows que mistura artistas conhecidos e descobertas da cena.', coords: [-23.5278, -46.6725], endereco: 'Av. Francisco Matarazzo, 694, Barra Funda' },
+    { id: 7, nome: 'Teatro Arthur Azevedo', bairro: 'Mooca', categoria: 'Teatro e música', preco: '$$ · programação', descricao: 'Uma casa de espetáculos com programação consistente e clima de bairro para quem curte teatro e música.', coords: [-23.5573, -46.5952], endereco: 'Av. Paes de Barros, 955, Alto da Mooca' },
 ];
 
 export default function Ouvir() {
-    return <TrailPage eyebrow="Trilha ouvir · São Paulo" title="A cidade tem" highlight="som." description="Palcos pequenos, vozes grandes e lugares onde a música chega antes da fama. Escolha um achado e dê play na noite." accent="bg-mapa-cyan" motif="♫" note="Escute onde a cidade pulsa." count="6 achados" places={lugares} />;
+    return <TrailPage eyebrow="Trilha ouvir · São Paulo" title="A cidade tem" highlight="som." description="Palcos pequenos, vozes grandes e lugares onde a música chega antes da fama. Escolha um achado e dê play na noite." accent="bg-mapa-cyan" motif="♫" note="Escute onde a cidade pulsa." count="7 achados" places={lugares} />;
 }

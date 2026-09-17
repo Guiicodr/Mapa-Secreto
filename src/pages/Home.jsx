@@ -13,10 +13,10 @@ function handleMapClick() {
 
 export default function Home() {
   const trilhas = [
-    { id: 1, nome: 'Comer', achados: '6 achados', bg: 'bg-mapa-orange' },
+    { id: 1, nome: 'Comer', achados: '7 achados', bg: 'bg-mapa-orange' },
     { id: 2, nome: 'Beber', achados: '6 achados', bg: 'bg-mapa-blue' },
-    { id: 3, nome: 'Ver', achados: '6 achados', bg: 'bg-mapa-green' },
-    { id: 4, nome: 'Ouvir', achados: '6 achados', bg: 'bg-mapa-cyan' },
+    { id: 3, nome: 'Ver', achados: '9 achados', bg: 'bg-mapa-green' },
+    { id: 4, nome: 'Ouvir', achados: '7 achados', bg: 'bg-mapa-cyan' },
   ];
 
   return (
