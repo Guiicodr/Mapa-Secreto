@@ -1,14 +1,10 @@
 import React from 'react';
 import Atmosphere from '../components/Atmosphere';
 import NavBar from '../components/NavBar';
+import { kidsPlaces } from '../data/kidsPlaces';
 
-function handleMapClick() {
-  if (window.location.hash === '#mapa-cards') {
-    document.getElementById('funciona')?.scrollIntoView({ behavior: 'smooth' });
-    return;
-  }
-
-  window.location.hash = 'mapa-cards';
+function scrollToSpecial() {
+  document.getElementById('passeios-criancas')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 export default function Home() {
@@ -25,35 +21,33 @@ export default function Home() {
       <NavBar />
 
       <section id="mapa" className="max-w-7xl mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-16 sm:pb-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-
         <div className="lg:col-span-7 space-y-8 animate-in fade-in slide-in-from-left-12 duration-1000 fill-mode-forwards">
           <span className="inline-block bg-mapa-green text-mapa-dark font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-full border-3 border-mapa-dark shadow-[3px_3px_0px_0px_#121212]">
-            FEITO POR QUEM MORA AQUI
+            ESPECIAL DIA DAS CRIANÇAS · FEITO POR QUEM MORA AQUI
           </span>
 
           <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black leading-[0.95] text-mapa-dark tracking-tight">
             Os melhores <br />
-            lugares <br />
-            <span className="text-mapa-orange">não estão no Google.</span>
+            passeios <br />
+            <span className="text-mapa-orange">viram boas memórias.</span>
           </h1>
 
           <p className="text-gray-800 font-bold text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed">
-            Um mapa colaborativo de becos, botecos, feiras e cantos que só aparecem quando alguém te conta. Sem patrocínio, sem fila de turista.
+            Uma seleção de lugares para descobrir São Paulo brincando e celebrar a infância com passeios inesquecíveis.
           </p>
 
           <div className="flex flex-wrap items-center gap-6 pt-4">
-            <button type="button" onClick={handleMapClick} className="bg-mapa-blue hover:scale-105 active:scale-95 text-white font-black text-lg px-10 py-5 rounded-full border-4 border-mapa-dark shadow-[6px_6px_0px_0px_#121212] transition-all cursor-pointer">
-              Abrir o mapa
+            <button type="button" onClick={scrollToSpecial} className="bg-mapa-blue hover:scale-105 active:scale-95 text-white font-black text-lg px-10 py-5 rounded-full border-4 border-mapa-dark shadow-[6px_6px_0px_0px_#121212] transition-all cursor-pointer">
+              Explorar passeios
             </button>
             <span className="text-sm font-black text-gray-500 uppercase tracking-widest">
-              +24 achados · 1 cidade
+              10 passeios · São Paulo e região
             </span>
           </div>
         </div>
 
         <div className="hidden sm:flex lg:col-span-5 justify-center lg:justify-end animate-in fade-in zoom-in-75 duration-1000 delay-300 fill-mode-forwards relative z-10">
           <div className="animate-float bg-mapa-yellow border-4 border-mapa-dark rounded-[40px] sm:rounded-[56px] p-5 sm:p-8 md:p-10 w-full max-w-lg aspect-square flex items-center justify-center relative shadow-[8px_8px_0px_0px_#121212] sm:shadow-[12px_12px_0px_0px_#121212]">
-
             <div className="border-4 border-mapa-dark rounded-[36px] w-full h-full overflow-hidden bg-white flex items-center justify-center p-4">
               <img
                 src="/cidade.png"
@@ -63,7 +57,7 @@ export default function Home() {
             </div>
 
             <div className="absolute -bottom-5 left-4 sm:-bottom-6 sm:left-8 bg-white border-4 border-mapa-dark px-4 sm:px-6 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm lg:text-base font-black -rotate-2 shadow-[4px_4px_0px_0px_#121212] z-20">
-              "X marca o boteco."
+              Um mapa de boas aventuras!
             </div>
           </div>
         </div>
@@ -76,6 +70,47 @@ export default function Home() {
         <div className="flex-1 bg-mapa-blue"></div>
         <div className="flex-1 bg-mapa-green"></div>
       </div>
+
+      <section id="passeios-criancas" className="w-full bg-mapa-bg px-4 sm:px-8 py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
+          <div className="max-w-3xl">
+            <span className="inline-block bg-mapa-yellow px-5 py-2 border-3 border-mapa-dark rounded-full font-black text-xs uppercase tracking-widest shadow-[3px_3px_0px_0px_#121212]">
+              Edição especial · Dia das Crianças
+            </span>
+            <h2 className="mt-5 text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+              Um passeio para cada jeito de brincar.
+            </h2>
+            <p className="mt-4 max-w-2xl text-gray-700 font-bold text-base sm:text-lg leading-relaxed">
+              Ideias para criar memórias em família, da cidade à natureza. Confira o endereço e planeje a próxima descoberta.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {kidsPlaces.map((place, index) => (
+              <article key={place.name} className="bg-white border-4 border-mapa-dark rounded-3xl overflow-hidden shadow-[5px_5px_0px_0px_#121212] hover:-translate-y-1 transition-transform">
+                <div className={`${['bg-mapa-yellow', 'bg-mapa-cyan', 'bg-mapa-green', 'bg-mapa-orange'][index % 4]} min-h-28 flex items-center justify-center border-b-4 border-mapa-dark`}>
+                  <span className="text-5xl" aria-hidden="true">{place.icon}</span>
+                </div>
+                <div className="p-5 sm:p-6">
+                  <p className="text-xs font-black uppercase tracking-widest text-mapa-blue">{place.area}</p>
+                  <h3 className="mt-2 text-2xl font-black leading-tight">{place.name}</h3>
+                  <p className="mt-3 text-sm font-semibold text-gray-700 leading-relaxed">{place.description}</p>
+                  <p className="mt-4 text-sm font-bold leading-relaxed">{place.address}</p>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name} ${place.address}`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 font-black text-mapa-blue underline underline-offset-4 hover:text-mapa-orange"
+                    aria-label={`Ver ${place.name} no Google Maps`}
+                  >
+                    Ver no Google Maps <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="funciona" className="w-full bg-mapa-dark-green text-white py-12 sm:py-24 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto space-y-10 sm:space-y-16">
@@ -140,9 +175,19 @@ export default function Home() {
                 Feito com cuidado, conversa e vontade de mostrar a cidade por inteiro.
               </h2>
             </div>
-            <p className="lg:col-span-4 text-base sm:text-lg font-bold leading-relaxed lg:pb-2">
-              Cada achado nasce de uma indicação. Cada indicação ajuda a manter vivos os lugares que fazem uma cidade ser dela mesma.
-            </p>
+            <div className="lg:col-span-4 space-y-4">
+              <p className="text-base sm:text-lg font-bold leading-relaxed lg:pb-2">
+                Cada achado nasce de uma indicação. Cada indicação ajuda a manter vivos os lugares que fazem uma cidade ser dela mesma.
+              </p>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(`Vamos descobrir passeios para o Dia das Crianças? ${window.location.href}`)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 font-black underline underline-offset-4 hover:text-mapa-blue"
+              >
+                Compartilhar com a família <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 border-y-4 border-mapa-dark py-8 animate-in fade-in duration-700 delay-200 fill-mode-forwards">
