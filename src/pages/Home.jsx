@@ -23,25 +23,25 @@ export default function Home() {
       <section id="mapa" className="max-w-7xl mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-16 sm:pb-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         <div className="lg:col-span-7 space-y-8 animate-in fade-in slide-in-from-left-12 duration-1000 fill-mode-forwards">
           <span className="inline-block bg-mapa-green text-mapa-dark font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-full border-3 border-mapa-dark shadow-[3px_3px_0px_0px_#121212]">
-            ESPECIAL DIA DAS CRIANÇAS · FEITO POR QUEM MORA AQUI
+            EDIÇÃO ESPECIAL · DIA DAS CRIANÇAS
           </span>
 
           <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black leading-[0.95] text-mapa-dark tracking-tight">
-            Os melhores <br />
-            passeios <br />
-            <span className="text-mapa-orange">viram boas memórias.</span>
+            Dia das <br />
+            Crianças <br />
+            <span className="text-mapa-orange">com aventuras!</span>
           </h1>
 
           <p className="text-gray-800 font-bold text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed">
-            Uma seleção de lugares para descobrir São Paulo brincando e celebrar a infância com passeios inesquecíveis.
+            São 10 lugares em São Paulo e região para brincar, explorar e criar lembranças juntos. Escolha o próximo passeio em família.
           </p>
 
           <div className="flex flex-wrap items-center gap-6 pt-4">
             <button type="button" onClick={scrollToSpecial} className="bg-mapa-blue hover:scale-105 active:scale-95 text-white font-black text-lg px-10 py-5 rounded-full border-4 border-mapa-dark shadow-[6px_6px_0px_0px_#121212] transition-all cursor-pointer">
-              Explorar passeios
+              Descobrir passeios
             </button>
             <span className="text-sm font-black text-gray-500 uppercase tracking-widest">
-              10 passeios · São Paulo e região
+              10 ideias para curtir juntos
             </span>
           </div>
         </div>
